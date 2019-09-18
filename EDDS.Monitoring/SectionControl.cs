@@ -24,6 +24,20 @@ namespace EDDS.Monitoring
             flowLayoutPanel1.Controls.Clear();
             foreach (DataRow row in DT.Rows)
             {
+                if ((long)row["left_count"] == 0)
+                {
+                    color[0] = Color.Red;
+                    color[1] = Color.Yellow;
+                } else if ((long)row["total_count"] - (long)row["left_count"] > 0)
+                {
+                    color[0] = Color.Gold;
+                    color[1] = Color.Black;
+                } else
+                {
+                    color[0] = Color.PaleGreen;
+                    color[1] = Color.Black;
+                }
+
                 label = new Label()
                 {
                     Font = new Font("Microsoft Sans Serif", 10f, FontStyle.Bold),
@@ -31,7 +45,7 @@ namespace EDDS.Monitoring
                     BackColor = color[0],
                     ForeColor = color[1],
                     TextAlign = ContentAlignment.MiddleCenter,
-                    Text = string.Format("{0}\n({1})", 1, 2),
+                    Text = string.Format("{0}\n({1})", row["name"], row["left_count"]),
                     Tag = string.Format("{0}\n({1})", 1, 2),
                     Margin = new Padding(3),
                     Size = new Size(88, 48),

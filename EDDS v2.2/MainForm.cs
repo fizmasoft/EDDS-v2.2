@@ -17,13 +17,13 @@ namespace EDDS
     public partial class MainForm : Form
     {
         //private Search search;
-        private SectionControl SC;
+        private string tmp = string.Empty;
 
         public MainForm()
         {
             InitializeComponent();
-            SC = new SectionControl() { Dock = DockStyle.Fill };
             this.Icon = Images.Get("edds").ToIcon();
+            
             //SearchAlgorithm.Initizalize();
             //search = new Search(this, Utility.Utils.DB.Clone(), 0.3, 1000) { Dock = DockStyle.Fill };
             //search.SelectedEvent += new SelectedEventHandler(SelectedItem);
@@ -36,8 +36,28 @@ namespace EDDS
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            panel1.Controls.Add(SC);
+            UpdateDataPanel();
             //panel.Controls.Add(search);
+        }
+
+        private void SectionDataInterval_Tick(object sender, EventArgs e)
+        {
+            UpdateDataPanel();
+        }
+
+        private void UpdateDataPanel()
+        {
+            string _t = (Utility.Utils.DB.ExecuteScalar(string.Format("SELECT MD5(string_agg(action_id::text, ',')) FROM {0}_crew;", Utility.Utils.PREFIX)).ToString());
+            if (tmp != _t)
+            {
+                tmp = _t;
+                sectionControl1.UpdateDataPanel1(Utility.Utils.DB.ExecuteReader(string.Format("SELECT {0}_sections.id, {0}_sections.name, COUNT(*) total_count, COUNT(*) FILTER (WHERE {0}_crew.action_id IN (2, 9)) left_count FROM {0}_crew JOIN {0}_sections ON {0}_crew.section_id = {0}_sections.id WHERE args->'order'->'y' = '1' GROUP BY {0}_sections.id, {0}_sections.name, {0}_sections.args->'order'->'x' ORDER BY {0}_sections.args->'order'->'x';", Utility.Utils.PREFIX)));
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Information.Help().ShowDialog();
         }
     }
 }
