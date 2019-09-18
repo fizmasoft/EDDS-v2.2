@@ -37,19 +37,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fizmasoft">
-      <HintPath>D:\Projects\Fizmasoft\Fizmasoft\bin\Release\Fizmasoft.dll</HintPath>
+      <HintPath>D:\Received  files\DLL\Fizmasoft.dll</HintPath>
     </Reference>
     <Reference Include="Fizmasoft.Config">
-      <HintPath>D:\Projects\Fizmasoft\Fizmasoft.Config\bin\Release\Fizmasoft.Config.dll</HintPath>
+      <HintPath>D:\Received  files\DLL\Fizmasoft.Config.dll</HintPath>
     </Reference>
     <Reference Include="Fizmasoft.Drawing">
-      <HintPath>D:\Projects\Fizmasoft\Fizmasoft.Images\bin\Release\Fizmasoft.Drawing.dll</HintPath>
+      <HintPath>D:\Received  files\DLL\Fizmasoft.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="Fizmasoft.PgSQL">
-      <HintPath>D:\Projects\Fizmasoft\Fizmasoft.PgSQL\bin\Release\Fizmasoft.PgSQL.dll</HintPath>
+      <HintPath>D:\Received  files\DLL\Fizmasoft.PgSQL.dll</HintPath>
     </Reference>
     <Reference Include="Fizmasoft.Search">
-      <HintPath>D:\Projects\Fizmasoft\Fizmasoft.Search\bin\Release\Fizmasoft.Search.dll</HintPath>
+      <HintPath>D:\Received  files\DLL\Fizmasoft.Search.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
