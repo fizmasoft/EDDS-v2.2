@@ -12,6 +12,8 @@ namespace EDDS.Monitoring
 {
     public partial class SectionControl : UserControl
     {
+        public event MoveCrewHandler MoveCrew;
+
         public SectionControl()
         {
             InitializeComponent();
@@ -46,7 +48,7 @@ namespace EDDS.Monitoring
                     ForeColor = color[1],
                     TextAlign = ContentAlignment.MiddleCenter,
                     Text = string.Format("{0}\n({1})", row["name"], row["left_count"]),
-                    Tag = string.Format("{0}\n({1})", 1, 2),
+                    Tag = new SectionCrew((int)row["id"], (long)row["left_count"], (long)row["total_count"]),
                     Margin = new Padding(3),
                     Size = new Size(88, 48),
                     AutoSize = false,
@@ -62,25 +64,63 @@ namespace EDDS.Monitoring
         private void OnMouseDown(object sender, MouseEventArgs e)
         {
             Label lb = sender as Label;
-            /*MoveItem.From = lb.Tag.ToString().Split('|').FirstOrDefault().ToInt();
-            if (lb.Tag.ToString().Split('|').LastOrDefault().ToInt() != 0)
-                lb.DoDragDrop(lb, DragDropEffects.Move);*/
+            SectionCrew sc = (SectionCrew)lb.Tag;
+            MoveItem.From = sc.ID;
+
+            if (sc.LeftCount != 0)
+                lb.DoDragDrop(lb, DragDropEffects.Move);
         }
 
         private void OnDragDrop(object sender, DragEventArgs e)
         {
             Label lb = sender as Label;
-            /*MoveItem.To = lb.Tag.ToString().Split('|').FirstOrDefault().ToInt();
-            new DivisionCars(DB, MoveItem.From).ShowDialog();
-            if (DB.Update("UPDATE chast_ekip SET kod_chast = {0}, kod_chast_old = {1}, ekipaj = 'Экипаж дислок.(' || ekipaj || ')' WHERE kod = {2}".TextFormat(MoveItem.To, MoveItem.From, MoveItem.Object)))
-            {
-                UpdateDivisionStatus();
-            }*/
+            SectionCrew sc = (SectionCrew)lb.Tag;
+            MoveItem.To = sc.ID;
+
+            MoveCrew?.Invoke(new MoveCrewArgs(MoveItem.From, MoveItem.To));
         }
 
         private void OnDragEnter(object sender, DragEventArgs e)
         {
-            e.Effect = DragDropEffects.Move;
+            Label lb = sender as Label;
+            SectionCrew sc = (SectionCrew)lb.Tag;
+
+            if (sc.ID != MoveItem.From && sc.LeftCount != sc.TotalCount)
+                e.Effect = DragDropEffects.Move;
         }
+    }
+
+    public delegate void MoveCrewHandler(MoveCrewArgs e);
+
+    public class MoveCrewArgs : EventArgs
+    {
+        public int FromSection { get; private set; }
+        public int ToSection { get; private set; }
+
+        public MoveCrewArgs(int fromsection, int tosection)
+        {
+            FromSection = fromsection;
+            ToSection = tosection;
+        }
+    }
+
+    public class SectionCrew
+    {
+        public SectionCrew(int id, long leftcount, long totalcount)
+        {
+            ID = id;
+            LeftCount = leftcount;
+            TotalCount = totalcount;
+        }
+
+        public int ID { get; private set; }
+        public long LeftCount { get; private set; }
+        public long TotalCount { get; private set; }
+    }
+
+    public static class MoveItem
+    {
+        public static int From { get; set; }
+        public static int To { get; set; }
     }
 }
