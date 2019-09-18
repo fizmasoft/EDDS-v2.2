@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.sectionControl1 = new EDDS.Monitoring.SectionControl();
+            this.SectionDataInterval = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel
@@ -37,27 +40,43 @@
             this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel.Location = new System.Drawing.Point(12, 12);
+            this.panel.Location = new System.Drawing.Point(12, 78);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1163, 447);
+            this.panel.Size = new System.Drawing.Size(1163, 381);
             this.panel.TabIndex = 0;
             // 
-            // panel1
+            // sectionControl1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.sectionControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Location = new System.Drawing.Point(13, 482);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1162, 257);
-            this.panel1.TabIndex = 1;
+            this.sectionControl1.Location = new System.Drawing.Point(12, 465);
+            this.sectionControl1.Name = "sectionControl1";
+            this.sectionControl1.Size = new System.Drawing.Size(1163, 274);
+            this.sectionControl1.TabIndex = 1;
+            // 
+            // SectionDataInterval
+            // 
+            this.SectionDataInterval.Enabled = true;
+            this.SectionDataInterval.Interval = 1000;
+            this.SectionDataInterval.Tick += new System.EventHandler(this.SectionDataInterval_Tick);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1095, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(80, 27);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "TestButton";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 751);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sectionControl1);
             this.Controls.Add(this.panel);
             this.Name = "MainForm";
             this.Text = "EDDS v2.2";
@@ -69,6 +88,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panel;
-        private System.Windows.Forms.Panel panel1;
+        private Monitoring.SectionControl sectionControl1;
+        private System.Windows.Forms.Timer SectionDataInterval;
+        private System.Windows.Forms.Button button1;
     }
 }

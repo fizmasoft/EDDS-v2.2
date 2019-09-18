@@ -76,6 +76,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EDDS.Information\EDDS.Information.csproj">
+      <Project>{f804c166-f3ec-4792-8f7b-4cf512df36dd}</Project>
+      <Name>EDDS.Information</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EDDS.Login\EDDS.Login.csproj">
       <Project>{c4ca85f3-4de6-47df-b13c-4801f94c1f46}</Project>
       <Name>EDDS.Login</Name>
