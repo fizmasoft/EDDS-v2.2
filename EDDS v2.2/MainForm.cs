@@ -16,7 +16,7 @@ namespace EDDS
 {
     public partial class MainForm : Form
     {
-        private Search search;
+        //private Search search;
         private SectionControl SC;
 
         public MainForm()
