@@ -27,7 +27,7 @@ namespace EDDS
 
             //SearchAlgorithm.Initizalize();
             //search = new Search(this, Utility.Utils.DB.Clone(), 0.3, 1000) { Dock = DockStyle.Fill };
-            //search.SelectedEvent += new SelectedEventHandler(SelectedItem);
+            //search.SelectedEvent += new SelectedEventHandler(SelectedItem); 
         }
 
         private void UpdateDataPanel()
