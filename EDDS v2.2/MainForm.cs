@@ -57,7 +57,7 @@ namespace EDDS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Information.Help().ShowDialog();
+            new Information.Helpform().ShowDialog();
         }
     }
 }

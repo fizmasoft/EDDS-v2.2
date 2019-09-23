@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EDDS.Information
+namespace EDDS.Information.Helpfolder
 {
-    public partial class Help : Form
+    public partial class GrafikDejurstv : UserControl
     {
-        public Help()
+        public GrafikDejurstv()
         {
             InitializeComponent();
         }
+
+        
     }
 }
