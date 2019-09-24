@@ -43,6 +43,7 @@
             this.btn_dobavit.TabIndex = 0;
             this.btn_dobavit.Text = "Добавить";
             this.btn_dobavit.UseVisualStyleBackColor = true;
+            this.btn_dobavit.Click += new System.EventHandler(this.btn_dobavit_Click);
             // 
             // dataGridView1
             // 

@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fizmasoft.PgSQL">
-      <HintPath>G:\Otabek\Programming\C#\DLL\Fizmasoft.PgSQL.dll</HintPath>
+      <HintPath>D:\Programming\C#\DLL\Fizmasoft.PgSQL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

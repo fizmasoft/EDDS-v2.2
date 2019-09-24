@@ -55,6 +55,20 @@ namespace EDDS.Information.Helpfolder
             }
             dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(209, 232, 255);
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.FromArgb(0, 0, 0);
+            UpdateRows();
+        }
+
+        private void UpdateRows()
+        {
+            Cursor = Cursors.WaitCursor;
+            dataGridView1.Rows.Clear();
+            DataTable DT = DB.ExecuteReader("SELECT id, name FROM edds_technics_type ORDER BY id");
+            foreach (DataRow row in DT.Rows)
+            {
+                dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["name"])].ReadOnly = true;
+            }
+            dataGridView1.Select();
+            Cursor = Cursors.Default;
         }
     }
 }

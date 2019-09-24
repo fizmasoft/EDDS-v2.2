@@ -37,19 +37,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fizmasoft">
-      <HintPath>G:\Otabek\Programming\C#\DLL\Fizmasoft.dll</HintPath>
+      <HintPath>D:\Programming\C#\DLL\Fizmasoft.dll</HintPath>
     </Reference>
     <Reference Include="Fizmasoft.Config">
-      <HintPath>G:\Otabek\Programming\C#\DLL\Fizmasoft.Config.dll</HintPath>
+      <HintPath>D:\Programming\C#\DLL\Fizmasoft.Config.dll</HintPath>
     </Reference>
     <Reference Include="Fizmasoft.Drawing">
-      <HintPath>G:\Otabek\Programming\C#\DLL\Fizmasoft.Drawing.dll</HintPath>
+      <HintPath>D:\Programming\C#\DLL\Fizmasoft.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="Fizmasoft.PgSQL">
-      <HintPath>G:\Otabek\Programming\C#\DLL\Fizmasoft.PgSQL.dll</HintPath>
+      <HintPath>D:\Programming\C#\DLL\Fizmasoft.PgSQL.dll</HintPath>
     </Reference>
     <Reference Include="Fizmasoft.Search">
-      <HintPath>G:\Otabek\Programming\C#\DLL\Fizmasoft.Search.dll</HintPath>
+      <HintPath>D:\Programming\C#\DLL\Fizmasoft.Search.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -76,6 +76,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\EDDS.Information\EDDS.Information.csproj">
       <Project>{f804c166-f3ec-4792-8f7b-4cf512df36dd}</Project>
       <Name>EDDS.Information</Name>
@@ -94,9 +99,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
