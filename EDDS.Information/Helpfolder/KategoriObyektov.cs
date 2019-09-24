@@ -58,7 +58,7 @@ namespace EDDS.Information.Helpfolder
             UpdateRows();
         }
 
-        private void UpdateRows()
+        public void UpdateRows()
         {
             Cursor = Cursors.WaitCursor;
             dataGridView1.Rows.Clear();
@@ -73,7 +73,8 @@ namespace EDDS.Information.Helpfolder
 
         private void btn_dobavit_Click(object sender, EventArgs e)
         {
-
+            Dialog1 dg1 = new Dialog1("Добавление объектов", "edds_object_type", DB, this);
+            dg1.Show(this);
         }
     }
 }

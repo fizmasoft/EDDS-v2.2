@@ -47,6 +47,8 @@ namespace EDDS.Information.Helpfolder
             dataGridView1.Columns.Clear();
             dataGridView1.Columns[dataGridView1.Columns.Add("id", "№")].Width = 50;
             dataGridView1.Columns[dataGridView1.Columns.Add("Name", "Наименование")].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[dataGridView1.Columns.Add("coordinate", "Координата")].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[dataGridView1.Columns.Add("args", "Аргументы")].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -55,6 +57,19 @@ namespace EDDS.Information.Helpfolder
             }
             dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(209, 232, 255);
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.FromArgb(0, 0, 0);
+        }
+
+        private void UpdateRows()
+        {
+            Cursor = Cursors.WaitCursor;
+            dataGridView1.Rows.Clear();
+            DataTable DT = DB.ExecuteReader("SELECT id, name, coordinate, args FROM edds_object_type ORDER BY id");
+            foreach (DataRow row in DT.Rows)
+            {
+                dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["name"], row["coordinate"], row["args"])].ReadOnly = true;
+            }
+            dataGridView1.Select();
+            Cursor = Cursors.Default;
         }
     }
 }

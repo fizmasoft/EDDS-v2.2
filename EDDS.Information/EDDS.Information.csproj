@@ -58,6 +58,12 @@
     <Compile Include="Helpfolder\DejurniyPoShtabu.Designer.cs">
       <DependentUpon>DejurniyPoShtabu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpfolder\Dialog1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpfolder\Dialog1.Designer.cs">
+      <DependentUpon>Dialog1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpfolder\GrafikDejurstv.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\DejurniyPoShtabu.resx">
       <DependentUpon>DejurniyPoShtabu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpfolder\Dialog1.resx">
+      <DependentUpon>Dialog1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\GrafikDejurstv.resx">
       <DependentUpon>GrafikDejurstv.cs</DependentUpon>
