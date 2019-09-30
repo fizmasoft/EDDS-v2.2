@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fizmasoft.Drawing">
+      <HintPath>D:\Programming\C#\DLL\Fizmasoft.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="Fizmasoft.PgSQL">
       <HintPath>D:\Programming\C#\DLL\Fizmasoft.PgSQL.dll</HintPath>
     </Reference>
