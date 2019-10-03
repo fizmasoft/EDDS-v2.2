@@ -15,22 +15,27 @@ namespace EDDS.Information.Helpfolder
     {
         PgSQL DB = new PgSQL();
         string tablename;
-        private KategoriObyektov KO;
+        string name = "name";
+        private Node1 nodeObj;
         int id;
         bool update = false;
-        public Dialog1(string _formname, string _tablename, PgSQL _DB, KategoriObyektov form, string _text = "", int _id = 0)
+        public Dialog1(string _formname, string _tablename, PgSQL _DB, Node1 form, string _text = "", int _id = 0)
         {
             InitializeComponent();
             DB = _DB;
             this.Text = _formname;
             tablename = _tablename;
-            KO = form;
+            nodeObj = form;
             textBox1.Text = _text;
             id = _id;
             if (_text != "")
             {
                 update = true;
                 btn_add.Text = "Обновить";
+            }
+            if (tablename == "edds_main_duty")
+            {
+                name = "full_name";
             }
                 
         }
@@ -39,23 +44,24 @@ namespace EDDS.Information.Helpfolder
         { 
             if (textBox1.Text != "")
             {
-                string checkquery = @"SELECT name FROM " + tablename + " WHERE name=\'" + textBox1.Text + "\'";
-                DataTable DT = DB.ExecuteReader(checkquery);
+                string checkquery = @"SELECT "+ name +" FROM " + tablename + " WHERE "+ name +"=\'" + textBox1.Text + "\'";
+               DataTable DT = DB.ExecuteReader(checkquery);
                 if(DT.Rows.Count == 0)
                 {
                     if (update)
                     {
-                        string query = @"UPDATE " + tablename + " SET name=\'" + textBox1.Text + "\' WHERE id=" + id;
+                        string query = @"UPDATE " + tablename + " SET "+ name +"=\'" + textBox1.Text + "\' WHERE id=" + id;
                         DB.ExecuteReader(query);
                         MessageBox.Show("Обновлено");
                     }
                     else
                     {
-                        string query = @"INSERT INTO " + tablename + " (name) VALUES(\'" + textBox1.Text + "\')";
+                        string query = @"INSERT INTO " + tablename + " ("+ name +") VALUES(\'" + textBox1.Text + "\')";
                         DB.ExecuteReader(query);
                         MessageBox.Show("Добавлено");
+                        textBox1.Text = "";
                     }
-                    KO.UpdateRows();
+                    nodeObj.UpdateRows();
                 }
                 else
                 {

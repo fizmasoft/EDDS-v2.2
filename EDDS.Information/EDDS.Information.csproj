@@ -55,12 +55,6 @@
     <Compile Include="Helpfolder\Avtovizov.Designer.cs">
       <DependentUpon>Avtovizov.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpfolder\DejurniyPoShtabu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Helpfolder\DejurniyPoShtabu.Designer.cs">
-      <DependentUpon>DejurniyPoShtabu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpfolder\Dialog1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,41 +73,17 @@
     <Compile Include="Helpfolder\GranitsiChastey.Designer.cs">
       <DependentUpon>GranitsiChastey.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpfolder\KategoriObyektov.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Helpfolder\KategoriObyektov.Designer.cs">
-      <DependentUpon>KategoriObyektov.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Helpfolder\KategoriTexniki.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Helpfolder\KategoriTexniki.Designer.cs">
-      <DependentUpon>KategoriTexniki.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Helpfolder\KategoriUlits.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Helpfolder\KategoriUlits.Designer.cs">
-      <DependentUpon>KategoriUlits.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpfolder\KategoriVizova.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Helpfolder\KategoriVizova.Designer.cs">
       <DependentUpon>KategoriVizova.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpfolder\MarkaTexniki.cs">
+    <Compile Include="Helpfolder\Node1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Helpfolder\MarkaTexniki.Designer.cs">
-      <DependentUpon>MarkaTexniki.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Helpfolder\MestonaxojdeniyeEkipaja.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Helpfolder\MestonaxojdeniyeEkipaja.Designer.cs">
-      <DependentUpon>MestonaxojdeniyeEkipaja.cs</DependentUpon>
+    <Compile Include="Helpfolder\Node1.Designer.cs">
+      <DependentUpon>Node1.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpfolder\Signal.cs">
       <SubType>UserControl</SubType>
@@ -151,9 +121,6 @@
     <EmbeddedResource Include="Helpfolder\Avtovizov.resx">
       <DependentUpon>Avtovizov.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Helpfolder\DejurniyPoShtabu.resx">
-      <DependentUpon>DejurniyPoShtabu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\Dialog1.resx">
       <DependentUpon>Dialog1.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,23 +130,11 @@
     <EmbeddedResource Include="Helpfolder\GranitsiChastey.resx">
       <DependentUpon>GranitsiChastey.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Helpfolder\KategoriObyektov.resx">
-      <DependentUpon>KategoriObyektov.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Helpfolder\KategoriTexniki.resx">
-      <DependentUpon>KategoriTexniki.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Helpfolder\KategoriUlits.resx">
-      <DependentUpon>KategoriUlits.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\KategoriVizova.resx">
       <DependentUpon>KategoriVizova.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Helpfolder\MarkaTexniki.resx">
-      <DependentUpon>MarkaTexniki.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Helpfolder\MestonaxojdeniyeEkipaja.resx">
-      <DependentUpon>MestonaxojdeniyeEkipaja.cs</DependentUpon>
+    <EmbeddedResource Include="Helpfolder\Node1.resx">
+      <DependentUpon>Node1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\Signal.resx">
       <DependentUpon>Signal.cs</DependentUpon>

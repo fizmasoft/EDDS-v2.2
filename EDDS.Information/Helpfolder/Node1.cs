@@ -12,16 +12,26 @@ using Fizmasoft.Drawing;
 
 namespace EDDS.Information.Helpfolder
 {
-    public partial class KategoriObyektov : UserControl
+    public partial class Node1 : UserControl
     {
         PgSQL DB;
-        public KategoriObyektov(PgSQL _DB)
+        string tablename;
+        string dialogname;
+        string name = "name";
+        public Node1(PgSQL _DB, string _tablename, string _dialogname)
         {
             InitializeComponent();
             DB = _DB;
+            tablename = _tablename;
+            dialogname = _dialogname;
+            if (tablename == "edds_main_duty")
+            {
+                name = "full_name";
+            }
         }
 
-        private void KategoriObyektov_Load(object sender, EventArgs e)
+
+        private void Node1_Load(object sender, EventArgs e)
         {
             InitializeTable();
         }
@@ -47,11 +57,11 @@ namespace EDDS.Information.Helpfolder
         {
             dataGridView1.Columns.Clear();
             dataGridView1.Columns[dataGridView1.Columns.Add("id", "№")].Width = 50;
-            dataGridView1.Columns[dataGridView1.Columns.Add("Name", "Наименование")].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[dataGridView1.Columns.Add(name, "Наименование")].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             DataGridViewImageColumn img1 = new DataGridViewImageColumn();
             DataGridViewImageColumn img2 = new DataGridViewImageColumn();
-            dataGridView1.Columns[dataGridView1.Columns.Add(img1)].Width = 50;
-            dataGridView1.Columns[dataGridView1.Columns.Add(img2)].Width = 50;
+            dataGridView1.Columns[dataGridView1.Columns.Add(img1)].Width = 25;
+            dataGridView1.Columns[dataGridView1.Columns.Add(img2)].Width = 25;
 
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
@@ -68,15 +78,15 @@ namespace EDDS.Information.Helpfolder
         {
             Cursor = Cursors.WaitCursor;
             dataGridView1.Rows.Clear();
-            DataTable DT = DB.ExecuteReader("SELECT id, name FROM edds_object_type ORDER BY id");
-            
-            Image image1 = Image.FromFile("Images\\edit.png");
-            Image image2 = Image.FromFile("Images\\trash.png");
+            DataTable DT = DB.ExecuteReader("SELECT id, "+ name + " FROM "+ tablename +" ORDER BY id");
+
+            Image image1 = Images.Get("edit");
+            Image image2 = Images.Get("trash");
             Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
             Bitmap objimage2 = new Bitmap(image2, new Size(17, 17));
             foreach (DataRow row in DT.Rows)
             {
-                dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["name"], objimage1, objimage2)].ReadOnly = true;
+                dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row[name], objimage1, objimage2)].ReadOnly = true;
             }
             dataGridView1.Select();
             Cursor = Cursors.Default;
@@ -84,7 +94,7 @@ namespace EDDS.Information.Helpfolder
 
         private void btn_dobavit_Click(object sender, EventArgs e)
         {
-            Dialog1 dg1 = new Dialog1("Добавление объектов", "edds_object_type", DB, this);
+            Dialog1 dg1 = new Dialog1("Добавление " + dialogname, tablename, DB, this);
             dg1.Show(this);
         }
 
@@ -94,12 +104,12 @@ namespace EDDS.Information.Helpfolder
             string name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             if (e.ColumnIndex == 2)
             {
-                Dialog1 dg1 = new Dialog1("Обновление объектов", "edds_object_type", DB, this, name, id);
+                Dialog1 dg1 = new Dialog1("Обновление " + dialogname, tablename, DB, this, name, id);
                 dg1.Show(this);
             }
 
             if (e.ColumnIndex == 3)
-                DB.ExecuteReader("DELETE FROM edds_object_type WHERE id="+id);
+                DB.ExecuteReader("DELETE FROM " + tablename + " WHERE id=" + id);
             UpdateRows();
         }
     }

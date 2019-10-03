@@ -42,13 +42,13 @@ namespace EDDS.Information
                         panel1.Controls.Add(new Helpfolder.KategoriVizova(DB) { Dock = DockStyle.Fill });
                         break;
                     case "Категории объекта":
-                        panel1.Controls.Add(new Helpfolder.KategoriObyektov(DB) { Dock = DockStyle.Fill });
+                        panel1.Controls.Add(new Helpfolder.Node1(DB, "edds_object_type", "категории объекта") { Dock = DockStyle.Fill });
                         break;
                     case "Категории улиц":
-                        panel1.Controls.Add(new Helpfolder.KategoriUlits(DB) { Dock = DockStyle.Fill });
+                        panel1.Controls.Add(new Helpfolder.Node1(DB, "edds_street_type" ,"категории улиц") { Dock = DockStyle.Fill });
                         break;
                     case "Категории техники":
-                        panel1.Controls.Add(new Helpfolder.KategoriTexniki(DB) { Dock = DockStyle.Fill });
+                        panel1.Controls.Add(new Helpfolder.Node1(DB, "edds_technics_type", "категории техники") { Dock = DockStyle.Fill });
                         break;
                     case "Границы частей":
                         panel1.Controls.Add(new Helpfolder.GranitsiChastey(DB) { Dock = DockStyle.Fill });
@@ -57,10 +57,10 @@ namespace EDDS.Information
                         panel1.Controls.Add(new Helpfolder.Signal(DB) { Dock = DockStyle.Fill });
                         break;
                     case "Марка техники":
-                        panel1.Controls.Add(new Helpfolder.MarkaTexniki(DB) { Dock = DockStyle.Fill });
+                        panel1.Controls.Add(new Helpfolder.Node1(DB, "edds_car_model", "марка техники") { Dock = DockStyle.Fill });
                         break;
                     case "Местонахождение экипажа":
-                        panel1.Controls.Add(new Helpfolder.MestonaxojdeniyeEkipaja(DB) { Dock = DockStyle.Fill });
+                        panel1.Controls.Add(new Helpfolder.Node1(DB, "edds_crew_actions", "местонахождение экипажа") { Dock = DockStyle.Fill });
                         break;
                     case "График дежурств":
                         panel1.Controls.Add(new Helpfolder.GrafikDejurstv { Dock = DockStyle.Fill });
@@ -69,7 +69,7 @@ namespace EDDS.Information
                         panel1.Controls.Add(new Helpfolder.VChPB { Dock = DockStyle.Fill });
                         break;
                     case "Дежурный по штабу":
-                        panel1.Controls.Add(new Helpfolder.DejurniyPoShtabu(DB) { Dock = DockStyle.Fill });
+                        panel1.Controls.Add(new Helpfolder.Node1(DB, "edds_main_duty", "дежурный по штабу") { Dock = DockStyle.Fill });
                         break;
                     case "Телефонный справочник":
                         panel1.Controls.Add(new Helpfolder.TelefonniySpravochnik { Dock = DockStyle.Fill });

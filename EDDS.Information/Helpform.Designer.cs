@@ -70,6 +70,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.listView1.FullRowSelect = true;
             listViewGroup1.Header = "Формирование вызова";
             listViewGroup1.Name = "listViewGroup1";
             listViewGroup2.Header = "Категория";
