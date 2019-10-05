@@ -61,6 +61,12 @@
     <Compile Include="Helpfolder\Dialog1.Designer.cs">
       <DependentUpon>Dialog1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpfolder\Dialog2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpfolder\Dialog2.Designer.cs">
+      <DependentUpon>Dialog2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpfolder\GrafikDejurstv.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\Dialog1.resx">
       <DependentUpon>Dialog1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpfolder\Dialog2.resx">
+      <DependentUpon>Dialog2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\GrafikDejurstv.resx">
       <DependentUpon>GrafikDejurstv.cs</DependentUpon>

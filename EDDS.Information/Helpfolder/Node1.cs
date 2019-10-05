@@ -112,5 +112,22 @@ namespace EDDS.Information.Helpfolder
                 DB.ExecuteReader("DELETE FROM " + tablename + " WHERE id=" + id);
             UpdateRows();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            dataGridView1.Rows.Clear();
+            DataTable DT = DB.ExecuteReader("SELECT id, " + name + " FROM " + tablename + " WHERE lower("+ name +") LIKE lower('%"+ textBox1.Text +"%') ORDER BY id");
+
+            Image image1 = Images.Get("edit");
+            Image image2 = Images.Get("trash");
+            Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
+            Bitmap objimage2 = new Bitmap(image2, new Size(17, 17));
+            foreach (DataRow row in DT.Rows)
+            {
+                dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row[name], objimage1, objimage2)].ReadOnly = true;
+            }
+            Cursor = Cursors.Default;
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace EDDS.Information.Helpfolder
         { 
             if (textBox1.Text != "")
             {
-                string checkquery = @"SELECT "+ name +" FROM " + tablename + " WHERE "+ name +"=\'" + textBox1.Text + "\'";
+               string checkquery = @"SELECT "+ name +" FROM " + tablename + " WHERE lower("+ name +") LIKE lower('%" + textBox1.Text + "%')";
                DataTable DT = DB.ExecuteReader(checkquery);
                 if(DT.Rows.Count == 0)
                 {
