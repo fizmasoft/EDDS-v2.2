@@ -95,22 +95,25 @@ namespace EDDS.Information.Helpfolder
         private void btn_dobavit_Click(object sender, EventArgs e)
         {
             Dialog1 dg1 = new Dialog1("Добавление " + dialogname, tablename, DB, this);
-            dg1.Show(this);
+            dg1.ShowDialog(this);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            string name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            if (e.ColumnIndex == 2)
+            if (e.RowIndex > -1 && (e.ColumnIndex == 2 || e.ColumnIndex == 3))
             {
-                Dialog1 dg1 = new Dialog1("Обновление " + dialogname, tablename, DB, this, name, id);
-                dg1.Show(this);
-            }
+                int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                string name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                if (e.ColumnIndex == 2)
+                {
+                    Dialog1 dg1 = new Dialog1("Обновление " + dialogname, tablename, DB, this, name, id);
+                    dg1.ShowDialog(this);
+                }
 
-            if (e.ColumnIndex == 3)
-                DB.ExecuteReader("DELETE FROM " + tablename + " WHERE id=" + id);
-            UpdateRows();
+                if (e.ColumnIndex == 3)
+                    DB.ExecuteReader("DELETE FROM " + tablename + " WHERE id=" + id);
+                UpdateRows();
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

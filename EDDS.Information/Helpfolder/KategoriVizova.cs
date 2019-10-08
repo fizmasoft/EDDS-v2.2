@@ -89,45 +89,53 @@ namespace EDDS.Information.Helpfolder
         private void btn_dobavit_Click(object sender, EventArgs e)
         {
             Dialog2 dg2 = new Dialog2("Добавление вызовы", DB, this, false, 1, false);
-            dg2.Show(this);
+            dg2.ShowDialog(this);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string id = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            int number = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
-            bool checkstate = false;
-            if (dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString() == "Автовызов")
-                checkstate = true;
-            if (e.ColumnIndex == 3)
+            if (e.RowIndex > -1 && (e.ColumnIndex == 3 || e.ColumnIndex == 4))
             {
-                Dialog2 dg2 = new Dialog2("Обновление вызовы", DB, this, true, number, checkstate, id);
-                dg2.Show(this);
-            }
+                string id = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                int number = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+                bool checkstate = false;
+                if (dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString() == "Автовызов")
+                    checkstate = true;
+                if (e.ColumnIndex == 3)
+                {
+                    Dialog2 dg2 = new Dialog2("Обновление вызовы", DB, this, true, number, checkstate, id);
+                    dg2.ShowDialog(this);
+                }
 
-            if (e.ColumnIndex == 4)
-                DB.ExecuteReader("DELETE FROM edds_call_type WHERE id=" + id);
-            UpdateRows();
+                if (e.ColumnIndex == 4)
+                    DB.ExecuteReader("DELETE FROM edds_call_type WHERE id=" + id);
+                UpdateRows();
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-            dataGridView1.Rows.Clear();
-            DataTable DT = DB.ExecuteReader("SELECT id, number, auto FROM edds_call_type WHERE number = '" + textBox1.Text + "' ORDER BY auto, number ASC;");
-            Image image1 = Images.Get("edit");
-            Image image2 = Images.Get("trash");
-            Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
-            Bitmap objimage2 = new Bitmap(image2, new Size(17, 17));
-
-            foreach (DataRow row in DT.Rows)
+            if (textBox1.Text == "")
+                UpdateRows();
+            else
             {
-                string vizov = "Вызов";
-                if (Convert.ToBoolean(row["auto"]))
-                    vizov = "Автовызов";
-                dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["number"], vizov, objimage1, objimage2)].ReadOnly = true;
+                Cursor = Cursors.WaitCursor;
+                dataGridView1.Rows.Clear();
+                DataTable DT = DB.ExecuteReader("SELECT id, number, auto FROM edds_call_type WHERE number = '" + textBox1.Text + "' ORDER BY auto, number ASC;");
+                Image image1 = Images.Get("edit");
+                Image image2 = Images.Get("trash");
+                Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
+                Bitmap objimage2 = new Bitmap(image2, new Size(17, 17));
+
+                foreach (DataRow row in DT.Rows)
+                {
+                    string vizov = "Вызов";
+                    if (Convert.ToBoolean(row["auto"]))
+                        vizov = "Автовызов";
+                    dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["number"], vizov, objimage1, objimage2)].ReadOnly = true;
+                }
+                Cursor = Cursors.Default;
             }
-            Cursor = Cursors.Default;
         }
     }
 }

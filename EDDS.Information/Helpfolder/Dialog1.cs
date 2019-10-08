@@ -1,4 +1,5 @@
-﻿using Fizmasoft.PostgreSQL;
+﻿using Fizmasoft.Drawing;
+using Fizmasoft.PostgreSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,8 +29,10 @@ namespace EDDS.Information.Helpfolder
             nodeObj = form;
             textBox1.Text = _text;
             id = _id;
+            this.Icon = Icon.FromHandle(Images.Get("plus").GetHicon());
             if (_text != "")
             {
+                this.Icon = Icon.FromHandle(Images.Get("edit").GetHicon());
                 update = true;
                 btn_add.Text = "Обновить";
             }
@@ -53,6 +56,7 @@ namespace EDDS.Information.Helpfolder
                         string query = @"UPDATE " + tablename + " SET "+ name +"=\'" + textBox1.Text + "\' WHERE id=" + id;
                         DB.ExecuteReader(query);
                         MessageBox.Show("Обновлено");
+                        this.Close();
                     }
                     else
                     {

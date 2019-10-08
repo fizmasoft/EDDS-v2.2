@@ -1,4 +1,5 @@
-﻿using Fizmasoft.PostgreSQL;
+﻿using Fizmasoft.Drawing;
+using Fizmasoft.PostgreSQL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,46 +27,52 @@ namespace EDDS.Information.Helpfolder
             id = _id;
             update = _update;
             numericUpDown1.Value = number;
+            this.Icon = Icon.FromHandle(Images.Get("plus").GetHicon());
+
             if (_checkstate)
                 checkBox1.CheckState = CheckState.Checked;
             if (update)
+            {
+                this.Icon = Icon.FromHandle(Images.Get("edit").GetHicon());
                 btn_add.Text = "Обновить";
+            }
+                
 
 
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            if (update)
+            bool vizov = false;
+            if (checkBox1.Checked)
+                vizov = true;
+            string checkquery = @"SELECT * FROM edds_call_type WHERE number=" + numericUpDown1.Value.ToString() + " AND auto=" + vizov.ToString();
+            DataTable DT = DB.ExecuteReader(checkquery);
+            if (DT.Rows.Count == 0)
             {
-                string query = @"UPDATE edds_call_type SET number='" + numericUpDown1.Value.ToString() + "', auto='" + Convert.ToBoolean(checkBox1.CheckState) + "' WHERE id=" + id;
-                DB.ExecuteReader(query);
-                MessageBox.Show("Обновлено");
+                if (update)
+                {
+                    string query = @"UPDATE edds_call_type SET number='" + numericUpDown1.Value.ToString() + "', auto='" + Convert.ToBoolean(checkBox1.CheckState) + "' WHERE id=" + id;
+                    DB.ExecuteReader(query);
+                    MessageBox.Show("Обновлено");
+                    this.Close();
+                }
+                else
+                {
+                    string query = @"INSERT INTO edds_call_type (number, auto) VALUES('" + numericUpDown1.Value.ToString() + "', '" + Convert.ToBoolean(checkBox1.CheckState) + "' )";
+                    DB.ExecuteReader(query);
+                    MessageBox.Show("Добавлено");
+                    numericUpDown1.Value = 1;
+                    checkBox1.CheckState = CheckState.Unchecked;
+                }
+
+                KV.UpdateRows();
             }
             else
             {
-                string query = @"INSERT INTO edds_call_type (number, auto) VALUES('" + numericUpDown1.Value.ToString() + "', '" + Convert.ToBoolean(checkBox1.CheckState) + "' )";
-                DB.ExecuteReader(query);
-                MessageBox.Show("Добавлено");
-                numericUpDown1.Value = 1;
-                checkBox1.CheckState = CheckState.Unchecked;
+                MessageBox.Show("Такой вызов существует !!!");
             }
-
-            KV.UpdateRows();
-
         }
-//            else
-//            {
-//                    MessageBox.Show("Такая имя существует !!!");
-//                }
-
-//}
-//            else
-//            {
-//                MessageBox.Show("Вы должны напечатать что-нибудь");
-//            }
-
-//        }
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {

@@ -42,6 +42,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(464, 20);
             this.textBox1.TabIndex = 8;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // dataGridView1
             // 
@@ -53,6 +54,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(545, 486);
             this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // btn_dobavit
             // 
@@ -63,6 +65,7 @@
             this.btn_dobavit.TabIndex = 6;
             this.btn_dobavit.Text = "Добавить";
             this.btn_dobavit.UseVisualStyleBackColor = true;
+            this.btn_dobavit.Click += new System.EventHandler(this.btn_dobavit_Click);
             // 
             // Signal
             // 

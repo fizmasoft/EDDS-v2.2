@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EDDS.Utility;
+using Fizmasoft.Drawing;
 
 namespace EDDS.Information
 {
@@ -19,6 +20,7 @@ namespace EDDS.Information
         {
             DB = Utils.DB;
             InitializeComponent();
+            
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
