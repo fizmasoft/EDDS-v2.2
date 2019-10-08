@@ -56,7 +56,7 @@ namespace EDDS.Information.Helpfolder
                     MessageBox.Show("Обновлено");
                     this.Close();
                 }
-                else if(DT.Rows.Count == 0)
+                else if (DT.Rows.Count == 0)
                 {
                     string query = "UPDATE edds_keywords SET name='" + textBox1.Text + "', \"desc\"='" + txtbox_desc.Text + "' WHERE id=" + id;
                     DB.ExecuteReader(query);
@@ -69,14 +69,16 @@ namespace EDDS.Information.Helpfolder
             {
                 string checkquery = @"SELECT * FROM edds_keywords WHERE lower(name)=lower('" + textBox1.Text + "')";
                 DataTable DT = DB.ExecuteReader(checkquery);
-                if (DT.Rows.Count == 0) { MessageBox.Show("Такой сигнал существует !!!"); }
-
-                string query = "INSERT INTO edds_keywords (name, \"desc\") VALUES('" + textBox1.Text + "', '" + txtbox_desc.Text + "')";
-                DB.ExecuteReader(query);
-                MessageBox.Show("Добавлено");
-                txtbox_desc.Text = "";
-                textBox1.Text = "";
-                textBox1.Focus();
+                if (DT.Rows.Count == 0)
+                {
+                    string query = "INSERT INTO edds_keywords (name, \"desc\") VALUES('" + textBox1.Text + "', '" + txtbox_desc.Text + "')";
+                    DB.ExecuteReader(query);
+                    MessageBox.Show("Добавлено");
+                    txtbox_desc.Text = "";
+                    textBox1.Text = "";
+                    textBox1.Focus();
+                }
+                else { MessageBox.Show("Такой сигнал существует !!!"); }
             }
 
             form.UpdateRows();
