@@ -103,6 +103,7 @@
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Dialog3";

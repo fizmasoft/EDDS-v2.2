@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fizmasoft.PostgreSQL;
 using Fizmasoft.Drawing;
+using EDDS.Utility;
 
 namespace EDDS.Information.Helpfolder
 {
@@ -74,6 +75,10 @@ namespace EDDS.Information.Helpfolder
             dataGridView1.Columns[dataGridView1.Columns.Add("args", "Аргументы")].Visible = false;
             dataGridView1.Columns[dataGridView1.Columns.Add(img1)].Width = 25;
             dataGridView1.Columns[dataGridView1.Columns.Add(img2)].Width = 25;
+            if (User.Can.Delete == false)
+                img2.Visible = false;
+            if (User.Can.Write == false)
+                img1.Visible = false;
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -84,12 +89,21 @@ namespace EDDS.Information.Helpfolder
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.FromArgb(0, 0, 0);
 
             dataGridView2.Columns.Clear();
+            DataGridViewImageColumn img11 = new DataGridViewImageColumn();
+            DataGridViewImageColumn img22 = new DataGridViewImageColumn();
+            DataGridViewImageColumn img33 = new DataGridViewImageColumn();
             dataGridView2.Columns[dataGridView2.Columns.Add("id", "№")].Width = 50;
             dataGridView2.Columns[dataGridView2.Columns.Add("name", "Наименование")].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView2.Columns[dataGridView2.Columns.Add(new DataGridViewImageColumn())].Width = 125;
+            dataGridView2.Columns[dataGridView2.Columns.Add(img33)].Width = 125;
             dataGridView2.Columns[dataGridView2.Columns.Add("args", "Аргументы")].Visible = false;
-            dataGridView2.Columns[dataGridView2.Columns.Add(new DataGridViewImageColumn())].Width = 25;
-            dataGridView2.Columns[dataGridView2.Columns.Add(new DataGridViewImageColumn())].Width = 25;
+            dataGridView2.Columns[dataGridView2.Columns.Add(img11)].Width = 25;
+            dataGridView2.Columns[dataGridView2.Columns.Add(img22)].Width = 25;
+
+            if (User.Can.Delete == false)
+                img22.Visible = false;
+            if (User.Can.Write == false)
+                img11.Visible = false;
+
             foreach (DataGridViewColumn column in dataGridView2.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -283,7 +297,7 @@ namespace EDDS.Information.Helpfolder
                 {
                     if (rowToMove.Index < rowIndexOfItemUnderMouseToDrop)
                     {
-                        for (int i = rowIndexOfItemUnderMouseToDrop; i > rowToMove.Index; i--)
+                        for (int i = rowToMove.Index + 1; i <= rowIndexOfItemUnderMouseToDrop; i++) 
                         {
                             string x1 = (i - 1).ToString();
                             string id1 = DB.ExecuteReader("SELECT id FROM edds_sections WHERE args::jsonb->'order'->'x'='" + i.ToString() + "' AND args::jsonb->'order'->'y'='0'").Rows[0][0].ToString();
@@ -295,14 +309,17 @@ namespace EDDS.Information.Helpfolder
                     {
                         for (int i = rowIndexOfItemUnderMouseToDrop; i < rowToMove.Index; i++)
                         {
+           
                             string x1 = (i + 1).ToString();
                             string id1 = DB.ExecuteReader("SELECT id FROM edds_sections WHERE args::jsonb->'order'->'x'='" + i.ToString() + "' AND args::jsonb->'order'->'y'='0'").Rows[0][0].ToString();
                             DB.ExecuteReader("UPDATE edds_sections SET args = jsonb_set(args, '{order, x}','" + x1 + "') WHERE id=" + id1);
                         }
                     }
+
+                    DB.ExecuteReader("UPDATE edds_sections SET args = jsonb_set(args, '{order, x}','" + x + "') WHERE id=" + id);
+                    UpdateRows(Convert.ToInt32(x), 1);
                 }
-                DB.ExecuteReader("UPDATE edds_sections SET args = jsonb_set(args, '{order, x}','" + x + "') WHERE id=" + id);
-                UpdateRows(Convert.ToInt32(x), 1);
+               
             }
         }
 
@@ -366,7 +383,7 @@ namespace EDDS.Information.Helpfolder
                 {
                     if (rowToMove.Index < rowIndexOfItemUnderMouseToDrop2)
                     {
-                        for (int i = rowIndexOfItemUnderMouseToDrop2; i > rowToMove.Index; i--)
+                        for (int i = rowToMove.Index + 1; i <= rowIndexOfItemUnderMouseToDrop2; i++)
                         {
                             string x1 = (i - 1).ToString();
                             string id1 = DB.ExecuteReader("SELECT id FROM edds_sections WHERE args::jsonb->'order'->'x'='" + i.ToString() + "' AND args::jsonb->'order'->'y'='1'").Rows[0][0].ToString();
@@ -383,9 +400,11 @@ namespace EDDS.Information.Helpfolder
                             DB.ExecuteReader("UPDATE edds_sections SET args = jsonb_set(args, '{order, x}','" + x1 + "') WHERE id=" + id1);
                         }
                     }
+
+                    DB.ExecuteReader("UPDATE edds_sections SET args = jsonb_set(args, '{order, x}','" + x + "') WHERE id=" + id);
+                    UpdateRows(Convert.ToInt32(x), 2);
                 }
-                DB.ExecuteReader("UPDATE edds_sections SET args = jsonb_set(args, '{order, x}','" + x + "') WHERE id=" + id);
-                UpdateRows(Convert.ToInt32(x), 2);
+                
             }
         }
 

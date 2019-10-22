@@ -11,6 +11,7 @@ using Fizmasoft.Search;
 using Fizmasoft.Drawing;
 using Fizmasoft;
 using EDDS.Monitoring;
+using EDDS.Utility;
 
 namespace EDDS
 {

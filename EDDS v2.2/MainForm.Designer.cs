@@ -49,7 +49,7 @@
             // 
             this.sectionControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sectionControl1.Location = new System.Drawing.Point(12, 465);
+            this.sectionControl1.Location = new System.Drawing.Point(12, 455);
             this.sectionControl1.Name = "sectionControl1";
             this.sectionControl1.Size = new System.Drawing.Size(1163, 274);
             this.sectionControl1.TabIndex = 1;
@@ -74,7 +74,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1187, 751);
+            this.ClientSize = new System.Drawing.Size(1187, 741);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.sectionControl1);
             this.Controls.Add(this.panel);

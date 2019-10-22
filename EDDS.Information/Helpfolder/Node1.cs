@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fizmasoft.PostgreSQL;
 using Fizmasoft.Drawing;
+using EDDS.Utility;
 
 namespace EDDS.Information.Helpfolder
 {
@@ -28,6 +29,8 @@ namespace EDDS.Information.Helpfolder
             {
                 name = "full_name";
             }
+            if (User.Can.Write == false)
+                btn_dobavit.Enabled = false;
         }
 
 
@@ -62,6 +65,10 @@ namespace EDDS.Information.Helpfolder
             DataGridViewImageColumn img2 = new DataGridViewImageColumn();
             dataGridView1.Columns[dataGridView1.Columns.Add(img1)].Width = 25;
             dataGridView1.Columns[dataGridView1.Columns.Add(img2)].Width = 25;
+            if (User.Can.Delete == false)
+                img2.Visible = false;
+            if (User.Can.Write == false)
+                img1.Visible = false;
 
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {

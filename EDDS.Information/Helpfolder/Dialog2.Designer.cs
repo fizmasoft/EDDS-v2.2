@@ -99,6 +99,7 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.btn_cancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Dialog2";

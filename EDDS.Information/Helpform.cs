@@ -20,6 +20,9 @@ namespace EDDS.Information
         {
             DB = Utils.DB;
             InitializeComponent();
+            if (User.Can.Read == false)
+                listView1.Items.Clear();
+            label1.Text = "";
             
         }
 
