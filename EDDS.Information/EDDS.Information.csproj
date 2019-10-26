@@ -37,6 +37,9 @@
     <Reference Include="Fizmasoft.PgSQL">
       <HintPath>D:\Programming\C#\DLL\Fizmasoft.PgSQL.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -78,6 +81,12 @@
     </Compile>
     <Compile Include="Helpfolder\Dialog4.Designer.cs">
       <DependentUpon>Dialog4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpfolder\Dialog5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpfolder\Dialog5.Designer.cs">
+      <DependentUpon>Dialog5.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpfolder\GrafikDejurstv.cs">
       <SubType>UserControl</SubType>
@@ -151,6 +160,9 @@
     <EmbeddedResource Include="Helpfolder\Dialog4.resx">
       <DependentUpon>Dialog4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Helpfolder\Dialog5.resx">
+      <DependentUpon>Dialog5.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\GrafikDejurstv.resx">
       <DependentUpon>GrafikDejurstv.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +196,9 @@
       <Project>{cba263a8-3e07-417f-9c51-e18eb5ad9bf0}</Project>
       <Name>EDDS.Utility</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

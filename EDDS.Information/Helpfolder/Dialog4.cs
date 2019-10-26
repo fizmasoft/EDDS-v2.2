@@ -43,13 +43,13 @@ namespace EDDS.Information.Helpfolder
                 y = "1";
             if (textBox1.Text != "")
             {
-                string checkquery = @"SELECT name FROM edds_sections WHERE lower(name)=lower('" + textBox1.Text + "')";
+                string checkquery = @"SELECT name FROM edds_sections WHERE lower(name)=lower('" + textBox1.Text.Replace("'", "''") + "')";
                 DataTable DT = DB.ExecuteReader(checkquery);
                 if (DT.Rows.Count == 0)
                 {
                     if (update)
                     {
-                        string query = @"UPDATE edds_sections SET name='" + textBox1.Text + "' WHERE id=" + id;
+                        string query = @"UPDATE edds_sections SET name='" + textBox1.Text.Replace("'", "''") + "' WHERE id=" + id;
                         DB.ExecuteReader(query);
                         MessageBox.Show("Обновлено");
                         this.Close();
@@ -57,13 +57,14 @@ namespace EDDS.Information.Helpfolder
                     else
                     {
                         int x = DB.ExecuteReader("SELECT * FROM edds_sections where args::jsonb->'order'->'y'='" + y + "'").Rows.Count;
-                        string query = @"INSERT INTO edds_sections (name, args) VALUES('" + textBox1.Text + "', '{\"order\": {\"x\": " + x + ",\"y\": " + y + "},\"edited\": false}' )";
+                        string query = @"INSERT INTO edds_sections (name, args) VALUES('" + textBox1.Text.Replace("'", "''") + "', '{\"order\": {\"x\": " + x + ",\"y\": " + y + "},\"edited\": false}' )";
                         //string query2 = "UPDATE edds_sections SET args=jsonb_set(args,'{order, x}',"+x+"::text::jsonb) WHERE name='" + textBox1.Text +"\'";
                         DB.ExecuteReader(query);
                         //DB.ExecuteReader(query2);
                         MessageBox.Show("Добавлено");
                         textBox1.Text = "";
                     }
+                    form.loadDatabase();
                     form.UpdateRows();
                 }
                 else

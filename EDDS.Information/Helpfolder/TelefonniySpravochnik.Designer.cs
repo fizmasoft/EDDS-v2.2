@@ -48,10 +48,11 @@
             // 
             this.btnAdd.Location = new System.Drawing.Point(3, 3);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 22);
+            this.btnAdd.Size = new System.Drawing.Size(86, 23);
             this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "Добавить";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dataGridView1
             // 
@@ -64,6 +65,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(739, 406);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.TabStop = false;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // label1
             // 
@@ -84,6 +86,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "TelefonniySpravochnik";
             this.Size = new System.Drawing.Size(745, 440);
+            this.Load += new System.EventHandler(this.TelefonniySpravochnik_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

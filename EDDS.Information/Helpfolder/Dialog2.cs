@@ -36,9 +36,6 @@ namespace EDDS.Information.Helpfolder
                 this.Icon = Icon.FromHandle(Images.Get("edit").GetHicon());
                 btn_add.Text = "Обновить";
             }
-                
-
-
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -65,7 +62,7 @@ namespace EDDS.Information.Helpfolder
                     numericUpDown1.Value = 1;
                     checkBox1.CheckState = CheckState.Unchecked;
                 }
-
+                KV.loadDatabase();
                 KV.UpdateRows();
             }
             else

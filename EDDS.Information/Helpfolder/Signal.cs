@@ -16,17 +16,29 @@ namespace EDDS.Information.Helpfolder
     public partial class Signal : UserControl
     {
         PgSQL DB;
+        DataTable DT;
         public Signal(PgSQL _DB)
         {
             InitializeComponent();
             DB = _DB;
+            Image image = Images.Get("plus");
+            Bitmap objimage = new Bitmap(image, new Size(17, 17));
+            btn_dobavit.Image = objimage;
+            btn_dobavit.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_dobavit.TextAlign = ContentAlignment.MiddleRight;
             if (User.Can.Write == false)
                 btn_dobavit.Enabled = false;
+            loadDatabase();
         }
 
         private void Signal_Load(object sender, EventArgs e)
         {
             InitializeTable();
+        }
+
+        public void loadDatabase()
+        {
+            DT = DB.ExecuteReader("SELECT * FROM edds_keywords ORDER BY id");
         }
 
         private void InitializeTable()
@@ -75,17 +87,21 @@ namespace EDDS.Information.Helpfolder
         {
             Cursor = Cursors.WaitCursor;
             dataGridView1.Rows.Clear();
-            DataTable DT = DB.ExecuteReader("SELECT id, name, \"desc\" as description FROM edds_keywords ORDER BY id");
+            DataTable dtResult = new DataTable();
+            if (textBox1.Text == "")
+                dtResult = DT;
+            if (DT.Select("name LIKE '%" + textBox1.Text.Replace("'", "''") + "%'").Count<DataRow>() != 0)
+                dtResult = DT.Select("name LIKE '%" + textBox1.Text.Replace("'", "''") + "%'","id").CopyToDataTable();
+
             Image image1 = Images.Get("edit");
             Image image2 = Images.Get("trash");
             Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
             Bitmap objimage2 = new Bitmap(image2, new Size(17, 17));
 
-            foreach (DataRow row in DT.Rows)
+            foreach (DataRow row in dtResult.Rows)
             {
-                dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["name"], row["description"], objimage1, objimage2)].ReadOnly = true;
+                dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["name"], row["desc"], objimage1, objimage2)].ReadOnly = true;
             }
-            dataGridView1.Select();
             Cursor = Cursors.Default;
         }
 
@@ -116,19 +132,7 @@ namespace EDDS.Information.Helpfolder
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-            dataGridView1.Rows.Clear();
-            DataTable DT = DB.ExecuteReader("SELECT id, name, \"desc\" FROM edds_keywords WHERE lower(name) LIKE lower('%" + textBox1.Text + "%') ORDER BY id");
-
-            Image image1 = Images.Get("edit");
-            Image image2 = Images.Get("trash");
-            Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
-            Bitmap objimage2 = new Bitmap(image2, new Size(17, 17));
-            foreach (DataRow row in DT.Rows)
-            {
-                dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["name"], row["desc"], objimage1, objimage2)].ReadOnly = true;
-            }
-            Cursor = Cursors.Default;
+            UpdateRows();
         }
     }
 }

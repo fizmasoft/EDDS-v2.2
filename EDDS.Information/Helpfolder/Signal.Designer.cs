@@ -38,9 +38,9 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(3, 3);
+            this.textBox1.Location = new System.Drawing.Point(3, 5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(464, 20);
+            this.textBox1.Size = new System.Drawing.Size(453, 20);
             this.textBox1.TabIndex = 8;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -52,16 +52,16 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(3, 32);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(545, 486);
+            this.dataGridView1.Size = new System.Drawing.Size(545, 439);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // btn_dobavit
             // 
             this.btn_dobavit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_dobavit.Location = new System.Drawing.Point(473, 3);
+            this.btn_dobavit.Location = new System.Drawing.Point(462, 3);
             this.btn_dobavit.Name = "btn_dobavit";
-            this.btn_dobavit.Size = new System.Drawing.Size(75, 23);
+            this.btn_dobavit.Size = new System.Drawing.Size(86, 23);
             this.btn_dobavit.TabIndex = 6;
             this.btn_dobavit.Text = "Добавить";
             this.btn_dobavit.UseVisualStyleBackColor = true;
@@ -75,7 +75,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_dobavit);
             this.Name = "Signal";
-            this.Size = new System.Drawing.Size(551, 521);
+            this.Size = new System.Drawing.Size(551, 474);
             this.Load += new System.EventHandler(this.Signal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

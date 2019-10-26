@@ -47,18 +47,18 @@ namespace EDDS.Information.Helpfolder
         {
             if (update)
             {
-                string checkquery = @"SELECT * FROM edds_keywords WHERE lower(name)=lower('" + textBox1.Text + "')";
+                string checkquery = @"SELECT * FROM edds_keywords WHERE lower(name)=lower('" + textBox1.Text.Replace("'", "''") + "')";
                 DataTable DT = DB.ExecuteReader(checkquery);
                 if (name.ToLower() == textBox1.Text.ToLower())
                 {
-                    string query = "UPDATE edds_keywords SET name='" + textBox1.Text + "', \"desc\"='" + txtbox_desc.Text + "' WHERE id=" + id;
+                    string query = "UPDATE edds_keywords SET name='" + textBox1.Text.Replace("'", "''") + "', \"desc\"='" + txtbox_desc.Text.Replace("'", "''") + "' WHERE id=" + id;
                     DB.ExecuteReader(query);
                     MessageBox.Show("Обновлено");
                     this.Close();
                 }
                 else if (DT.Rows.Count == 0)
                 {
-                    string query = "UPDATE edds_keywords SET name='" + textBox1.Text + "', \"desc\"='" + txtbox_desc.Text + "' WHERE id=" + id;
+                    string query = "UPDATE edds_keywords SET name='" + textBox1.Text.Replace("'", "''") + "', \"desc\"='" + txtbox_desc.Text.Replace("'", "''") + "' WHERE id=" + id;
                     DB.ExecuteReader(query);
                     MessageBox.Show("Обновлено");
                     this.Close();
@@ -67,11 +67,11 @@ namespace EDDS.Information.Helpfolder
             }
             else
             {
-                string checkquery = @"SELECT * FROM edds_keywords WHERE lower(name)=lower('" + textBox1.Text + "')";
+                string checkquery = @"SELECT * FROM edds_keywords WHERE lower(name)=lower('" + textBox1.Text.Replace("'", "''") + "')";
                 DataTable DT = DB.ExecuteReader(checkquery);
                 if (DT.Rows.Count == 0)
                 {
-                    string query = "INSERT INTO edds_keywords (name, \"desc\") VALUES('" + textBox1.Text + "', '" + txtbox_desc.Text + "')";
+                    string query = "INSERT INTO edds_keywords (name, \"desc\") VALUES('" + textBox1.Text.Replace("'", "''") + "', '" + txtbox_desc.Text.Replace("'", "''") + "')";
                     DB.ExecuteReader(query);
                     MessageBox.Show("Добавлено");
                     txtbox_desc.Text = "";
@@ -80,7 +80,7 @@ namespace EDDS.Information.Helpfolder
                 }
                 else { MessageBox.Show("Такой сигнал существует !!!"); }
             }
-
+            form.loadDatabase();
             form.UpdateRows();
         }
         private void btn_cancel_Click(object sender, EventArgs e)

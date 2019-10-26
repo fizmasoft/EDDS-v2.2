@@ -16,16 +16,30 @@ namespace EDDS.Information.Helpfolder
     public partial class GranitsiChastey : UserControl
     {
         PgSQL DB;
+        DataTable DT;
+        DataTable DT2;
         public GranitsiChastey(PgSQL _DB)
         {
             InitializeComponent();
             DB = _DB;
+            Image image = Images.Get("plus");
+            Bitmap objimage = new Bitmap(image, new Size(17, 17));
+            btn_dobavit.Image = objimage;
+            btn_dobavit.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_dobavit.TextAlign = ContentAlignment.MiddleRight;
             Image image1 = Images.Get("up");
             Image image2 = Images.Get("down");
             Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
             Bitmap objimage2 = new Bitmap(image2, new Size(17, 17));
             btn_up.Image = objimage1;
             btn_down.Image = objimage2;
+            loadDatabase();
+        }
+
+        public void loadDatabase()
+        {
+            DT = DB.ExecuteReader("SELECT id, name, coordinate, args FROM edds_sections WHERE args::jsonb->'order'->'y'='0' ORDER BY args::jsonb->'order'->'x';");
+            DT2 = DB.ExecuteReader("SELECT id, name, coordinate, args FROM edds_sections WHERE args::jsonb->'order'->'y'='1' ORDER BY args::jsonb->'order'->'x';");
         }
 
         private void GranitsiChastey_Load(object sender, EventArgs e)
@@ -121,8 +135,15 @@ namespace EDDS.Information.Helpfolder
             Cursor = Cursors.WaitCursor;
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
-            DataTable DT = DB.ExecuteReader("SELECT id, name, coordinate, args FROM edds_sections WHERE args::jsonb->'order'->'y'='0' ORDER BY args::jsonb->'order'->'x';");
-            DataTable DT2 = DB.ExecuteReader("SELECT id, name, coordinate, args FROM edds_sections WHERE args::jsonb->'order'->'y'='1' ORDER BY args::jsonb->'order'->'x';");
+            DataTable dtResult = new DataTable();
+            DataTable dtResult2= new DataTable();
+         
+            if (DT.Select("name LIKE '%" + textBox1.Text + "%'").Count<DataRow>() != 0)
+                dtResult = DT.Select("name LIKE '%" + textBox1.Text + "%'").CopyToDataTable();
+
+            if (DT2.Select("name LIKE '%" + textBox1.Text + "%'").Count<DataRow>() != 0)
+                dtResult2 = DT2.Select("name LIKE '%" + textBox1.Text + "%'").CopyToDataTable();
+
             Image image1 = Images.Get("edit");
             Image image2 = Images.Get("trash");
             Image image3 = Images.Get("check");
@@ -133,13 +154,13 @@ namespace EDDS.Information.Helpfolder
             Bitmap objimage4 = new Bitmap(image4, new Size(17, 17));
             Bitmap objimage5 = objimage4;
 
-            foreach (DataRow row in DT.Rows)
+            foreach (DataRow row in dtResult.Rows)
             {
                 if (row["coordinate"] == null)
                     objimage5 = objimage3;
                 dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["name"], objimage5, row["args"], objimage1, objimage2)].ReadOnly = true;
             }
-            foreach (DataRow row in DT2.Rows)
+            foreach (DataRow row in dtResult2.Rows)
             {
                 if (row["coordinate"] == null)
                     objimage5 = objimage3;
@@ -433,5 +454,11 @@ namespace EDDS.Information.Helpfolder
             }
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            UpdateRows();
+        }
+
+       
     }
 }

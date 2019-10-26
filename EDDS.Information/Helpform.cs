@@ -20,8 +20,8 @@ namespace EDDS.Information
         {
             DB = Utils.DB;
             InitializeComponent();
-            if (User.Can.Read == false)
-                listView1.Items.Clear();
+            //if (User.Can.Read == false)
+            //    listView1.Items.Clear();
             label1.Text = "";
             
         }
@@ -77,7 +77,7 @@ namespace EDDS.Information
                         panel1.Controls.Add(new Helpfolder.Node1(DB, "edds_main_duty", "дежурный по штабу") { Dock = DockStyle.Fill });
                         break;
                     case "Телефонный справочник":
-                        panel1.Controls.Add(new Helpfolder.TelefonniySpravochnik { Dock = DockStyle.Fill });
+                        panel1.Controls.Add(new Helpfolder.TelefonniySpravochnik(DB) { Dock = DockStyle.Fill });
                         break;
 
                 }

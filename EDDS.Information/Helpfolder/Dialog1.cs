@@ -47,20 +47,20 @@ namespace EDDS.Information.Helpfolder
         { 
             if (textBox1.Text != "")
             {
-               string checkquery = @"SELECT "+ name +" FROM " + tablename + " WHERE lower("+ name +")=lower('" + textBox1.Text + "')";
+               string checkquery = @"SELECT "+ name +" FROM " + tablename + " WHERE lower("+ name +")=lower('" + textBox1.Text.Replace("'", "''") + "')";
                DataTable DT = DB.ExecuteReader(checkquery);
                 if(DT.Rows.Count == 0)
                 {
                     if (update)
                     {
-                        string query = @"UPDATE " + tablename + " SET "+ name +"=\'" + textBox1.Text + "\' WHERE id=" + id;
+                        string query = @"UPDATE " + tablename + " SET "+ name +"=\'" + textBox1.Text.Replace("'", "''") + "\' WHERE id=" + id;
                         DB.ExecuteReader(query);
                         MessageBox.Show("Обновлено");
                         this.Close();
                     }
                     else
                     {
-                        string query = @"INSERT INTO " + tablename + " ("+ name +") VALUES(\'" + textBox1.Text + "\')";
+                        string query = @"INSERT INTO " + tablename + " ("+ name +") VALUES(\'" + textBox1.Text.Replace("'", "''") + "\')";
                         DB.ExecuteReader(query);
                         MessageBox.Show("Добавлено");
                         textBox1.Text = "";

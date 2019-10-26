@@ -48,15 +48,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(88, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(338, 20);
+            this.textBox1.Size = new System.Drawing.Size(327, 20);
             this.textBox1.TabIndex = 5;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btn_dobavit
             // 
             this.btn_dobavit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_dobavit.Location = new System.Drawing.Point(432, 4);
+            this.btn_dobavit.Location = new System.Drawing.Point(421, 4);
             this.btn_dobavit.Name = "btn_dobavit";
-            this.btn_dobavit.Size = new System.Drawing.Size(75, 23);
+            this.btn_dobavit.Size = new System.Drawing.Size(86, 23);
             this.btn_dobavit.TabIndex = 3;
             this.btn_dobavit.Text = "Добавить";
             this.btn_dobavit.UseVisualStyleBackColor = true;

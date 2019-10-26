@@ -16,13 +16,25 @@ namespace EDDS.Information.Helpfolder
     public partial class KategoriVizova : UserControl
     {
         private PgSQL DB;
+        DataTable DT;
 
         public KategoriVizova(PgSQL _DB)
         {
             InitializeComponent();
             DB = _DB;
+            Image image = Images.Get("plus");
+            Bitmap objimage = new Bitmap(image, new Size(17, 17));
+            btn_dobavit.Image = objimage;
+            btn_dobavit.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_dobavit.TextAlign = ContentAlignment.MiddleRight;
             if (User.Can.Write == false)
                 btn_dobavit.Enabled = false;
+            loadDatabase();
+        }
+
+        public void loadDatabase()
+        {
+            DT = DB.ExecuteReader("SELECT id, number, auto FROM edds_call_type ORDER BY auto, number ASC;");
         }
 
         private void KategoriVizova_Load(object sender, EventArgs e)
@@ -77,13 +89,18 @@ namespace EDDS.Information.Helpfolder
         {
             Cursor = Cursors.WaitCursor;
             dataGridView1.Rows.Clear();
-            DataTable DT = DB.ExecuteReader("SELECT id, number, auto FROM edds_call_type ORDER BY auto, number ASC;");
+
+            DataTable dtResult = new DataTable();
+            if (textBox1.Text == "")
+                dtResult = DT;
+            else if (DT.Select("number=" + textBox1.Text).Count<DataRow>() != 0)
+                dtResult = DT.Select("number=" + textBox1.Text).CopyToDataTable();
             Image image1 = Images.Get("edit");
             Image image2 = Images.Get("trash");
             Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
             Bitmap objimage2 = new Bitmap(image2, new Size(17, 17));
 
-            foreach (DataRow row in DT.Rows)
+            foreach (DataRow row in dtResult.Rows)
             {
                 string vizov = "Вызов";
                 if (Convert.ToBoolean(row["auto"]))
@@ -116,33 +133,43 @@ namespace EDDS.Information.Helpfolder
 
                 if (e.ColumnIndex == 4)
                     DB.ExecuteReader("DELETE FROM edds_call_type WHERE id=" + id);
+                loadDatabase();
                 UpdateRows();
             }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
-                UpdateRows();
-            else
-            {
-                Cursor = Cursors.WaitCursor;
-                dataGridView1.Rows.Clear();
-                DataTable DT = DB.ExecuteReader("SELECT id, number, auto FROM edds_call_type WHERE number = '" + textBox1.Text + "' ORDER BY auto, number ASC;");
-                Image image1 = Images.Get("edit");
-                Image image2 = Images.Get("trash");
-                Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
-                Bitmap objimage2 = new Bitmap(image2, new Size(17, 17));
+            UpdateRows();
+            //if (textBox1.Text == "")
+            //    UpdateRows();
+            //else
+            //{
+            //    Cursor = Cursors.WaitCursor;
+            //    dataGridView1.Rows.Clear();
+            //    DataTable DT = DB.ExecuteReader("SELECT id, number, auto FROM edds_call_type WHERE number = '" + textBox1.Text + "' ORDER BY auto, number ASC;");
+            //    Image image1 = Images.Get("edit");
+            //    Image image2 = Images.Get("trash");
+            //    Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
+            //    Bitmap objimage2 = new Bitmap(image2, new Size(17, 17));
 
-                foreach (DataRow row in DT.Rows)
+            //    foreach (DataRow row in DT.Rows)
+            //    {
+            //        string vizov = "Вызов";
+            //        if (Convert.ToBoolean(row["auto"]))
+            //            vizov = "Автовызов";
+            //        dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["number"], vizov, objimage1, objimage2)].ReadOnly = true;
+            //    }
+            //    Cursor = Cursors.Default;
+            //}
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 {
-                    string vizov = "Вызов";
-                    if (Convert.ToBoolean(row["auto"]))
-                        vizov = "Автовызов";
-                    dataGridView1.Rows[dataGridView1.Rows.Add(row["id"], row["number"], vizov, objimage1, objimage2)].ReadOnly = true;
-                }
-                Cursor = Cursors.Default;
-            }
+                    e.Handled = true;
+                }           
         }
     }
 }
