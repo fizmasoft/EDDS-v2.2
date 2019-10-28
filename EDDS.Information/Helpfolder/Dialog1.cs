@@ -55,27 +55,29 @@ namespace EDDS.Information.Helpfolder
                     {
                         string query = @"UPDATE " + tablename + " SET "+ name +"=\'" + textBox1.Text.Replace("'", "''") + "\' WHERE id=" + id;
                         DB.ExecuteReader(query);
-                        MessageBox.Show("Обновлено");
+                        MessageBox.Show("Обновлено","",MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                     else
                     {
                         string query = @"INSERT INTO " + tablename + " ("+ name +") VALUES(\'" + textBox1.Text.Replace("'", "''") + "\')";
                         DB.ExecuteReader(query);
-                        MessageBox.Show("Добавлено");
+                        MessageBox.Show("Добавлено","",MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textBox1.Text = "";
+                        textBox1.Focus();
                     }
+                    nodeObj.loadDatabase();
                     nodeObj.UpdateRows();
                 }
                 else
                 {
-                    MessageBox.Show("Такая имя существует !!!");
+                    MessageBox.Show("Такая имя существует !!!","",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
             }
             else
             {
-                MessageBox.Show("Вы должны напечатать что-нибудь");
+                MessageBox.Show("Вы должны напечатать что-нибудь", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

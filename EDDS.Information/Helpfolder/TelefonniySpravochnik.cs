@@ -94,8 +94,8 @@ namespace EDDS.Information.Helpfolder
             DataTable dtResult = new DataTable();
             if (textBox1.Text == "")
                 dtResult = DT;
-            else if (DT.Select("full_name=" + textBox1.Text).Count<DataRow>() != 0)
-                dtResult = DT.Select("full_name=" + textBox1.Text).CopyToDataTable();
+            else if (DT.Select("full_name LIKE '%" + textBox1.Text + "%'").Count<DataRow>() != 0)
+                dtResult = DT.Select("full_name LIKE '%" + textBox1.Text + "%'").CopyToDataTable();
             Image image1 = Images.Get("edit");
             Image image2 = Images.Get("trash");
             Bitmap objimage1 = new Bitmap(image1, new Size(17, 17));
@@ -110,7 +110,7 @@ namespace EDDS.Information.Helpfolder
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Dialog5 dg5 = new Dialog5(DB, this, false);
+            Dialog5 dg5 = new Dialog5(DB, this, false, false);
             dg5.ShowDialog(this);
         }
 
@@ -135,15 +135,54 @@ namespace EDDS.Information.Helpfolder
                     string title = dtResult.Rows[0][6].ToString();
                     string department = dtResult.Rows[0][7].ToString();
 
-                    Dialog5 dg5 = new Dialog5(DB, this, true, id,fullname,nickname,position, home,mobile,work,address,title,department);
+                    Dialog5 dg5 = new Dialog5(DB, this, true, false, id, fullname, nickname, position, home, mobile, work, address, title, department);
                     dg5.ShowDialog(this);
+                    loadDatabase();
+                    UpdateRows();
                 }
 
                 if (e.ColumnIndex == 4)
-                    DB.ExecuteReader("DELETE FROM edds_contacts WHERE id=" + id);
-                loadDatabase();
-                UpdateRows();
+                {
+                    DialogResult myResult;
+                    myResult = MessageBox.Show("Вы действительно хотите удалить\n" + dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), "Удалить", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (myResult == DialogResult.OK)
+                    {
+                        DB.ExecuteReader("DELETE FROM edds_contacts WHERE id=" + id);
+                        MessageBox.Show("Удалено", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        loadDatabase();
+                        UpdateRows();
+                    }
+                }
             }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && (e.ColumnIndex != 3 && e.ColumnIndex != 4))
+            {
+                string id = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    DataTable dtResult = new DataTable();
+                    if (DT.Select("id=" + id).Count<DataRow>() != 0)
+                        dtResult = DT.Select("id=" + id).CopyToDataTable();
+                    string fullname = dtResult.Rows[0][1].ToString();
+                    string nickname = dtResult.Rows[0][2].ToString();
+                    string position = dtResult.Rows[0][3].ToString();
+                    JObject json = JObject.Parse(dtResult.Rows[0][4].ToString());
+                    string home = json["home"].ToString();
+                    string mobile = json["mobile"].ToString();
+                    string work = json["work"].ToString();
+                    string address = dtResult.Rows[0][5].ToString();
+                    string title = dtResult.Rows[0][6].ToString();
+                    string department = dtResult.Rows[0][7].ToString();
+
+                    Dialog5 dg5 = new Dialog5(DB, this, false, true ,id, fullname, nickname, position, home, mobile, work, address, title, department);
+                    dg5.ShowDialog(this);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            UpdateRows();
         }
     }
 }

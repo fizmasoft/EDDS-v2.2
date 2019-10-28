@@ -129,11 +129,24 @@ namespace EDDS.Information.Helpfolder
                 {
                     Dialog1 dg1 = new Dialog1("Обновление " + dialogname, tablename, DB, this, name, id);
                     dg1.ShowDialog(this);
+                    loadDatabase();
+                    UpdateRows();
                 }
 
                 if (e.ColumnIndex == 3)
-                    DB.ExecuteReader("DELETE FROM " + tablename + " WHERE id=" + id);
-                UpdateRows();
+                {
+                    DialogResult myResult;
+                    myResult = MessageBox.Show("Вы действительно хотите удалить\n" + dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), "Удалить", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if(myResult == DialogResult.OK)
+                    {
+                        DB.ExecuteReader("DELETE FROM " + tablename + " WHERE id=" + id);
+                        MessageBox.Show("Удалено", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        loadDatabase();
+                        UpdateRows();
+                    }
+                }
+
+                
             }
         }
 

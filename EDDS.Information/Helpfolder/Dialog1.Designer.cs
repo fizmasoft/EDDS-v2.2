@@ -37,9 +37,10 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(50, 16);
+            this.textBox1.MaxLength = 100;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(184, 20);
-            this.textBox1.TabIndex = 0;
+            this.textBox1.TabIndex = 1;
             // 
             // btn_cancel
             // 
@@ -47,7 +48,7 @@
             this.btn_cancel.Location = new System.Drawing.Point(159, 51);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancel.TabIndex = 1;
+            this.btn_cancel.TabIndex = 3;
             this.btn_cancel.Text = "Отменить";
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);

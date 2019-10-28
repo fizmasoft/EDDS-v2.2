@@ -51,7 +51,7 @@ namespace EDDS.Information.Helpfolder
                     {
                         string query = @"UPDATE edds_sections SET name='" + textBox1.Text.Replace("'", "''") + "' WHERE id=" + id;
                         DB.ExecuteReader(query);
-                        MessageBox.Show("Обновлено");
+                        MessageBox.Show("Обновлено", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                     else
@@ -61,7 +61,7 @@ namespace EDDS.Information.Helpfolder
                         //string query2 = "UPDATE edds_sections SET args=jsonb_set(args,'{order, x}',"+x+"::text::jsonb) WHERE name='" + textBox1.Text +"\'";
                         DB.ExecuteReader(query);
                         //DB.ExecuteReader(query2);
-                        MessageBox.Show("Добавлено");
+                        MessageBox.Show("Добавлено", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textBox1.Text = "";
                     }
                     form.loadDatabase();
@@ -69,13 +69,12 @@ namespace EDDS.Information.Helpfolder
                 }
                 else
                 {
-                    MessageBox.Show("Такая имя существует !!!");
+                    MessageBox.Show("Такая имя существует !!!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
             else
             {
-                MessageBox.Show("Вы должны напечатать что-нибудь");
+                MessageBox.Show("Вы должны напечатать что-нибудь", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -83,7 +82,6 @@ namespace EDDS.Information.Helpfolder
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
-
         }
     }
 }

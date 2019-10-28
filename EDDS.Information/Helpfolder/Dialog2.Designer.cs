@@ -40,7 +40,7 @@
             this.btn_add.Location = new System.Drawing.Point(14, 48);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
-            this.btn_add.TabIndex = 4;
+            this.btn_add.TabIndex = 3;
             this.btn_add.Text = "Добавить";
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
@@ -51,7 +51,7 @@
             this.btn_cancel.Location = new System.Drawing.Point(123, 48);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancel.TabIndex = 5;
+            this.btn_cancel.TabIndex = 4;
             this.btn_cancel.Text = "Отменить";
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
@@ -62,7 +62,7 @@
             this.checkBox1.Location = new System.Drawing.Point(153, 15);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(50, 17);
-            this.checkBox1.TabIndex = 5;
+            this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Авто";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -81,7 +81,7 @@
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 6;
+            this.numericUpDown1.TabIndex = 1;
             this.numericUpDown1.Value = new decimal(new int[] {
             1,
             0,

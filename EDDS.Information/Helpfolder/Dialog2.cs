@@ -51,23 +51,25 @@ namespace EDDS.Information.Helpfolder
                 {
                     string query = @"UPDATE edds_call_type SET number='" + numericUpDown1.Value.ToString() + "', auto='" + Convert.ToBoolean(checkBox1.CheckState) + "' WHERE id=" + id;
                     DB.ExecuteReader(query);
-                    MessageBox.Show("Обновлено");
+                    MessageBox.Show("Обновлено", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
                 else
                 {
                     string query = @"INSERT INTO edds_call_type (number, auto) VALUES('" + numericUpDown1.Value.ToString() + "', '" + Convert.ToBoolean(checkBox1.CheckState) + "' )";
                     DB.ExecuteReader(query);
-                    MessageBox.Show("Добавлено");
-                    numericUpDown1.Value = 1;
+                    MessageBox.Show("Добавлено", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     checkBox1.CheckState = CheckState.Unchecked;
+                    numericUpDown1.Focus();
+                    numericUpDown1.Value = 1;
+                    numericUpDown1.Select(0, 2);
                 }
                 KV.loadDatabase();
                 KV.UpdateRows();
             }
             else
             {
-                MessageBox.Show("Такой вызов существует !!!");
+                MessageBox.Show("Такой вызов существует !!!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

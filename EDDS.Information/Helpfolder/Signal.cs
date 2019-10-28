@@ -116,11 +116,22 @@ namespace EDDS.Information.Helpfolder
                 {
                     Dialog3 dg3 = new Dialog3(DB, this, true, name, description, id);
                     dg3.ShowDialog(this);
+                    loadDatabase();
+                    UpdateRows();
                 }
 
                 if (e.ColumnIndex == 4)
-                    DB.ExecuteReader("DELETE FROM edds_keywords WHERE id=" + id);
-                UpdateRows();
+                {
+                    DialogResult myResult;
+                    myResult = MessageBox.Show("Вы действительно хотите удалить\n" + dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), "Удалить", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (myResult == DialogResult.OK)
+                    {
+                        DB.ExecuteReader("DELETE FROM edds_keywords WHERE id=" + id);
+                        MessageBox.Show("Удалено", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        loadDatabase();
+                        UpdateRows();
+                    }
+                } 
             }
         }
 
