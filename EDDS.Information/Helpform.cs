@@ -68,7 +68,7 @@ namespace EDDS.Information
                         panel1.Controls.Add(new Helpfolder.Node1(DB, "edds_crew_actions", "местонахождение экипажа") { Dock = DockStyle.Fill });
                         break;
                     case "График дежурств":
-                        panel1.Controls.Add(new Helpfolder.GrafikDejurstv { Dock = DockStyle.Fill });
+                        panel1.Controls.Add(new Helpfolder.GrafikDejurstv(DB) { Dock = DockStyle.Fill });
                         break;
                     case "ВЧПБ":
                         panel1.Controls.Add(new Helpfolder.VChPB { Dock = DockStyle.Fill });
@@ -79,7 +79,9 @@ namespace EDDS.Information
                     case "Телефонный справочник":
                         panel1.Controls.Add(new Helpfolder.TelefonniySpravochnik(DB) { Dock = DockStyle.Fill });
                         break;
-
+                    case "Список дежурств":
+                        panel1.Controls.Add(new Helpfolder.Node1(DB, "edds_shift", "список дежурств") { Dock = DockStyle.Fill });
+                        break;
                 }
             }
 

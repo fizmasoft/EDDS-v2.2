@@ -30,7 +30,8 @@
         {
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Формирование вызова", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Категория", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Другие", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Дежурств", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Другие", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Вызов"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 12F));
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
@@ -51,13 +52,14 @@
             "Марка техники"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 12F));
             System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
             "Местонахождение экипажа"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 12F));
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
-            "График дежурств"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 12F));
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("Список дежурств");
             System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
-            "ВЧПБ"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 12F));
+            "График дежурств"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 12F));
             System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Дежурный по штабу"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 12F));
+            "ВЧПБ"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 12F));
             System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Дежурный по штабу"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 12F));
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
             "Телефонный справочник"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 12F));
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Helpform));
             this.listView1 = new System.Windows.Forms.ListView();
@@ -76,12 +78,15 @@
             listViewGroup1.Name = "listViewGroup1";
             listViewGroup2.Header = "Категория";
             listViewGroup2.Name = "listViewGroup2";
-            listViewGroup3.Header = "Другие";
-            listViewGroup3.Name = "listViewGroup3";
+            listViewGroup3.Header = "Дежурств";
+            listViewGroup3.Name = "listViewGroup4";
+            listViewGroup4.Header = "Другие";
+            listViewGroup4.Name = "listViewGroup3";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2,
-            listViewGroup3});
+            listViewGroup3,
+            listViewGroup4});
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             listViewItem1.Group = listViewGroup1;
             listViewItem1.ToolTipText = "Вызов";
@@ -95,22 +100,24 @@
             listViewItem5.ToolTipText = "Категории улиц";
             listViewItem6.Group = listViewGroup2;
             listViewItem6.ToolTipText = "Категории техники";
-            listViewItem7.Group = listViewGroup3;
+            listViewItem7.Group = listViewGroup4;
             listViewItem7.ToolTipText = "Границы частей";
-            listViewItem8.Group = listViewGroup3;
+            listViewItem8.Group = listViewGroup4;
             listViewItem8.ToolTipText = "Сигнал";
-            listViewItem9.Group = listViewGroup3;
+            listViewItem9.Group = listViewGroup4;
             listViewItem9.ToolTipText = "Марка техники";
-            listViewItem10.Group = listViewGroup3;
+            listViewItem10.Group = listViewGroup4;
             listViewItem10.ToolTipText = "Местонахождение экипажа";
             listViewItem11.Group = listViewGroup3;
-            listViewItem11.ToolTipText = "График дежурств";
+            listViewItem11.ToolTipText = "Список дежурств";
             listViewItem12.Group = listViewGroup3;
-            listViewItem12.ToolTipText = "ВЧПБ";
-            listViewItem13.Group = listViewGroup3;
-            listViewItem13.ToolTipText = "Дежурный по штабу";
+            listViewItem12.ToolTipText = "График дежурств";
+            listViewItem13.Group = listViewGroup4;
+            listViewItem13.ToolTipText = "ВЧПБ";
             listViewItem14.Group = listViewGroup3;
-            listViewItem14.ToolTipText = "Телефонный справочник";
+            listViewItem14.ToolTipText = "Дежурный по штабу";
+            listViewItem15.Group = listViewGroup4;
+            listViewItem15.ToolTipText = "Телефонный справочник";
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
@@ -125,7 +132,8 @@
             listViewItem11,
             listViewItem12,
             listViewItem13,
-            listViewItem14});
+            listViewItem14,
+            listViewItem15});
             this.listView1.Location = new System.Drawing.Point(12, 12);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -170,6 +178,7 @@
             this.Controls.Add(this.listView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Helpform";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Справочник";
             this.ResumeLayout(false);
 

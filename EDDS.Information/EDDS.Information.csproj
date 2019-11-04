@@ -88,6 +88,12 @@
     <Compile Include="Helpfolder\Dialog5.Designer.cs">
       <DependentUpon>Dialog5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpfolder\DialogDejurstv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpfolder\DialogDejurstv.Designer.cs">
+      <DependentUpon>DialogDejurstv.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpfolder\GrafikDejurstv.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,6 +117,12 @@
     </Compile>
     <Compile Include="Helpfolder\Node1.Designer.cs">
       <DependentUpon>Node1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpfolder\NodeTabPages.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Helpfolder\NodeTabPages.Designer.cs">
+      <DependentUpon>NodeTabPages.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpfolder\Signal.cs">
       <SubType>UserControl</SubType>
@@ -163,6 +175,9 @@
     <EmbeddedResource Include="Helpfolder\Dialog5.resx">
       <DependentUpon>Dialog5.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Helpfolder\DialogDejurstv.resx">
+      <DependentUpon>DialogDejurstv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\GrafikDejurstv.resx">
       <DependentUpon>GrafikDejurstv.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\Node1.resx">
       <DependentUpon>Node1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpfolder\NodeTabPages.resx">
+      <DependentUpon>NodeTabPages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpfolder\Signal.resx">
       <DependentUpon>Signal.cs</DependentUpon>
